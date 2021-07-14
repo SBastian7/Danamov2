@@ -18,7 +18,7 @@ const data = {
             image:'p0.jpg',
             price:185000,
             brand:'Nike',
-            rating:4.5,
+            rating:2.8,
             numReviews:10,
             description:'Ultra ligera camisetas sisaso nonas'
         },
@@ -29,7 +29,7 @@ const data = {
             image:'item.jpg',
             price:185000,
             brand:'Nike',
-            rating:4.5,
+            rating:2.,
             numReviews:10,
             description:'Ultra ligera camisetas sisaso nonas'
         },
@@ -40,7 +40,7 @@ const data = {
             image:'item.jpg',
             price:125000,
             brand:'Puma',
-            rating:4,
+            rating:4.8,
             numReviews:3,
             description:'Ultimos nuevos y mazimos'
         },

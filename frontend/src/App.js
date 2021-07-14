@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from './components/Product.js';
 import data from './data.js';
 
 function App() {
@@ -43,25 +44,7 @@ function App() {
             <div className="row">
                 {
                   data.products.map(product => (
-                    <div className="col s12 m4 l3" key={product._id}>
-                    <a href={"/product/"+product._id} className="card blue-grey darken-1 hoverable">
-                      <div className="card-image">
-                          <img src={"/img/"+product.image} alt={product.name+" Danamo Store"}/>
-                          <div className="card-content white center">
-                              <p className="bold">{product.name}</p>
-                              <p>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="far fa-star"></i>
-                                  <i className="far fa-star"></i>
-                              </p>
-                            <p className="bold">${product.price}</p>
-                          </div>
-                        </div>
-                      
-                      </a>
-                  </div>   
+                    <Product key={product._id} product={product}></Product>
                   ))
                 }
                               
