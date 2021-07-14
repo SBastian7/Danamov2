@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Rating(props) {
-    const { rating, numReviews } = props;
+    const { rating } = props;
     return (
         <div className="yellow-text text-darken-3">
             <i className={rating >= 1 ? "fas fa-star" : rating >= 0.5 ? "fas fa-star-half-alt" : "far fa-star"}></i>

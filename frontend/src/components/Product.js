@@ -10,9 +10,7 @@ export default function Product(props) {
                     <img src={"/img/" + product.image} alt={product.name + " Danamo Store"} />
                     <div className="card-content white center">
                         <p className="bold">{product.name}</p>
-                        <p>
-                            <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
-                        </p>
+                        <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
                         <p className="bold">${product.price}</p>
                     </div>
                 </div>

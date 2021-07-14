@@ -25,3 +25,54 @@ a{
 .logo{
   height: 16vh;
 }
+.color_box{
+  margin: 5px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 3px;
+}
+.size_box{
+  border:solid 1px grey;
+  margin: 5px;
+  padding-top: 5px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 3px;
+}
+.check{
+  margin: 10px 10px;
+  opacity: 0.8;
+}
+.thumbnails{
+  margin-top: 20px;
+}
+.btn_product_screen{
+  border: solid 2px rgb(141, 12, 12);
+  color: rgb(141, 12, 12);
+  background: white;
+  border-radius: 30px;
+  display:flex;
+  height: 45px;
+  cursor: pointer;
+}
+.btn_noproduct_screen{
+  border: solid 2px rgb(90, 89, 89);
+  color: rgb(90, 89, 89);
+  background: white;
+  border-radius: 30px;
+  display:flex;
+  height: 45px;
+  cursor: pointer;
+}
+.btn_question_screen{
+  margin-top: 10px;
+  border: solid 2px #25d366;
+  background: #25d366;
+  color: #fff;
+  border-radius: 30px;
+  display:flex;
+  height: 45px;
+  cursor: pointer;
+}
