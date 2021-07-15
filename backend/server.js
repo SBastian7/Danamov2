@@ -6,7 +6,7 @@ const app = express();
 app.get('/', (req, res) => {
     res.send('Server Melo')
 })
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4000
 app.listen(port, () => {
     console.log('Serving at '+port)
 })
