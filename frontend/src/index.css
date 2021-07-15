@@ -76,3 +76,18 @@ a{
   height: 45px;
   cursor: pointer;
 }
+.loading{
+  height: 60vh;
+
+}
+.hmmm{
+  margin: auto;
+}
+.alert-danger{
+  color: red;
+  border: solid 1px red;
+  border-radius: 5px;
+}
+.alert-info{
+  color: green;
+}
