@@ -32,7 +32,16 @@ const data = {
             rating:2.8,
             stock:15,
             numReviews:10,
-            description:'Ultra ligera camisetas sisaso nonas dm ioasjpo wskjs wqop'
+            description:'Ultra ligera camisetas sisaso nonas dm ioasjpo wskjs wqop',
+            colores:[
+                'red',
+                'green',
+                'yellow'
+            ],
+            tallas:[
+                15,
+                17
+            ]
         },
         {
             _id:'2',
@@ -44,7 +53,13 @@ const data = {
             rating:2.,
             stock:18,
             numReviews:10,
-            description:'Ultra ligera camisetas sisaso nonas dm ioasjpo wskjs wqop'
+            description:'Ultra ligera camisetas sisaso nonas dm ioasjpo wskjs wqop',
+            colores:[
+                'red'
+            ],
+            tallas:[
+                15
+            ]
         },
         {
             _id:'3',
@@ -56,7 +71,9 @@ const data = {
             rating:4.8,
             stock:18,
             numReviews:3,
-            description:'Ultimos nuevos y mazimos dm ioasjpo wskjs wqop'
+            description:'Ultimos nuevos y mazimos dm ioasjpo wskjs wqop',
+            colores:[],
+            tallas:[]
         },
         {
             _id:'4',
@@ -68,7 +85,13 @@ const data = {
             rating:3.5,
             stock:18,
             numReviews:10,
-            description:'una mas por qwuyhqwuier asopkdm ioasjpo wskjs wqop'
+            description:'una mas por qwuyhqwuier asopkdm ioasjpo wskjs wqop',
+            colores:[
+                'red'
+            ],
+            tallas:[
+                15
+            ]
         }
     ]
 }

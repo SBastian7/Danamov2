@@ -92,7 +92,7 @@ export default function HomeScreen(props) {
 									<div className="row">
 										<div className="col s12">
 											{product.stock > 0 ?
-												<div className="grey-text text-darken-3"><i class="fas fa-shipping-fast green-text text-darken-3"></i> Disponible</div>:<div className="grey-text text-darken-3"><i class="far fa-times-circle"></i> Sin stock</div>}
+												<div className="grey-text text-darken-3"><i className="fas fa-shipping-fast green-text text-darken-3"></i> Disponible</div>:<div className="grey-text text-darken-3"><i className="far fa-times-circle"></i> Sin stock</div>}
 										</div>
 									</div>
 									<div className="row">
@@ -100,12 +100,12 @@ export default function HomeScreen(props) {
 											{
 												product.stock > 0 
 													? <div className="col s12 btn_product_screen valign-wrapper hoverable"><div className="col s12 center">
-														<i class="fas fa-cart-arrow-down fa-lg"></i> AÑADIR AL CARRITO</div></div>
+														<i className="fas fa-cart-arrow-down fa-lg"></i> AÑADIR AL CARRITO</div></div>
 													: <div className="">
 														<div className="col s12 btn_noproduct_screen valign-wrapper"><div className="col s12 center">
-													<i class="fas fa-times fa-lg"></i> VENDIDO</div></div>
+													<i className="fas fa-times fa-lg"></i> VENDIDO</div></div>
 													<div className="col s12 btn_question_screen valign-wrapper hoverable bold"><div className="col s12 center">
-													<i class="fab fa-whatsapp fa-lg"></i> CUANDO ESTARÁ DISPONIBLE?</div></div>
+													<i className="fab fa-whatsapp fa-lg"></i> CUANDO ESTARÁ DISPONIBLE?</div></div>
 													</div>
 											}
 										</div>
