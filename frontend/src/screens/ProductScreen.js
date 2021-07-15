@@ -1,39 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { detailsProduct } from '../actions/productActions.js';
+import LoadingBox from '../components/LoadingBox.js';
+import MessageBox from '../components/MessageBox.js';
 import Rating from '../components/Rating.js'
-import axios from 'axios'
 
 export default function HomeScreen(props) {
-	const [product, setProduct] = useState();
+	const dispatch = useDispatch();
+	const productId = props.match.params.id
+	const productDetails = useSelector( (state) => state.productDetails );
+	const { loading, error, product } = productDetails;
 	useEffect(() => {
-		const fetchData = async () => {
-			const { data } = await axios.get('/api/products/'+props.match.params.id);
-			setProduct(data)
-			console.log(data)
-		};
-		fetchData();
-	}, [props])
+		dispatch(detailsProduct(productId))
+		
+	}, [dispatch, productId])
 	
-	if (!product) {
-		return <div className="">Producto no encontrado</div>
-	}
-	const price_txt = '12547'/*product.price.toString()*/
-	var txt = ""
-	var pos = 0
-	for (var n = price_txt.length; n >= 0; n--) {
-		if ((n) % 3 === 0 && n !== 0 && n !== price_txt.length) {
-			if (pos < price_txt.length) {
-				txt += '.' + price_txt[pos]
-				pos++
-			}
-		} else {
-			if (pos < price_txt.length) {
-				txt += price_txt[pos]
-				pos++
+	const dotprice = (price_txt) => {
+		var txt = ""
+		var pos = 0
+		for (var n = price_txt.length; n >= 0; n--) {
+			if ((n) % 3 === 0 && n !== 0 && n !== price_txt.length) {
+				if (pos < price_txt.length) {
+					txt += '.' + price_txt[pos]
+					pos++
+				}
+			} else {
+				if (pos < price_txt.length) {
+					txt += price_txt[pos]
+					pos++
+				}
 			}
 		}
+		return txt
 	}
+	
 	return (
 		<div className="container">
+      <br />
+      {
+        loading? (<LoadingBox></LoadingBox>)
+        : error? (<MessageBox variant='danger'>{error}</MessageBox>)
+        : (
+			<div className="container">
 			<div className="row">
 				<div className="col s12">
 					<div className="card">
@@ -71,7 +79,7 @@ export default function HomeScreen(props) {
 										</div>
 										<div className="col s5 center bold">
 											<h5 className="bold">
-												${txt}
+												${dotprice(product.price.toString())}
 											</h5>
 										</div>
 									</div>
@@ -125,6 +133,11 @@ export default function HomeScreen(props) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>)
+      }
+      
+    </div>
+
+		
 	)
 }

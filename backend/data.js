@@ -1,7 +1,7 @@
 const data = {
     products:[
         {
-            _id:'0',
+            _id:"0",
             name:'Ultra Highness',
             category:'Camisetas',
             image:'item.jpg',
