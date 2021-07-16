@@ -39,7 +39,7 @@ export default function HomeScreen(props) {
 	}
 
 	const addToCartHandler = () => {
-		props.history.push(`/cart/${productId}?qty=${qty}`)
+		props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${size}`)
 	}
 	return (
 		<div className="container">
@@ -94,7 +94,7 @@ export default function HomeScreen(props) {
 															<div className="col bold">Colores</div>
 															{
 																product.colores.map((c, index) => (
-																	<div className={"color_box hoverable " + c} key={c}>
+																	<div className={"color_box hoverable " + c} key={c} onClick={() => {setColor(c)}}>
 																		{/* <i className="fas fa-check check"></i> */}
 																	</div>
 																))
@@ -106,7 +106,7 @@ export default function HomeScreen(props) {
 															</div>
 															{
 																product.tallas.map((s, index) => (
-																	<div className={"size_box hoverable center "} key={s}>
+																	<div className={"size_box hoverable center"} key={`size${s}`} id={`size${s}`} onClick={() => setSize(s)}>
 																		{s}
 																	</div>
 																))

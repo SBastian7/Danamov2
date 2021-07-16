@@ -1,50 +1,53 @@
 import React from 'react';
-
+import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom'
 import {BrowserRouter, Route} from 'react-router-dom'
-import cartScreen from './screens/cartScreen.js';
+import CartScreen from './screens/CartScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
 
 function App() {
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart
   return (
     <BrowserRouter>
       <div className="App">
         <header>
           <ul id="dropdown1" className="dropdown-content">
-            <li><a href="#!">one</a></li>
+            {/* <li><a href="#!">one</a></li>
             <li><a href="#!">two</a></li>
             <li className="divider"></li>
-            <li><a href="#!">three</a></li>
+            <li><a href="#!">three</a></li> */}
           </ul>
           <nav className="nav-extended white">
             <div className="nav-wrapper">
-              <a href="/" className="brand-logo center">
+              <Link to="/" className="brand-logo center">
                 <img src="/img/logo.png" className="logo hide-on-small-only show-on-medium-and-up" alt="Danamo Store" />
-              </a>
+              </Link>
 
-              <a href="#!" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up red-text text-darken-4"><i className="material-icons">menu</i></a>
+              <Link to="#!" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up red-text text-darken-4"><i className="material-icons">menu</i></Link>
               <ul id="nav-mobile" className="right">
-                <li><a href="#!"><i className="far fa-user fa-lg red-text text-darken-4"></i><span className="red-text text-darken-4">Ingresar</span></a></li>
-                <li><a href="#!"><i className="fas fa-shopping-cart fa-lg red-text text-darken-4"></i><span className="red-text text-darken-4">0</span></a></li>
+                <li><Link to="#!"><i className="far fa-user fa-lg red-text text-darken-4"></i><span className=" red-text text-darken-4">Ingresar</span></Link></li>
+                <li><Link to="#!" className="cart-button valign-wrapper"><i className="fas fa-shopping-cart fa-lg"></i>{cartItems.length>=0 && (<span class="cart-badge col">{" "+cartItems.length}</span>)}</Link></li>
               </ul>
             </div>
 
             <div className="nav-content hide-on-small-only ">
-              <a className="red-text btn-flat white" href="/">Inicio</a>
-              <a className="red-text btn-flat white dropdown-trigger" href="#!" data-target="dropdown1">Tienda<i className="material-icons right">arrow_drop_down</i></a>
+              <Link className="red-text btn-flat white" to="/">Inicio</Link>
+              <Link className="red-text btn-flat white dropdown-trigger" to="#!" data-target="dropdown1">Tienda<i className="material-icons right">arrow_drop_down</i></Link>
             </div>
           </nav>
 
           <ul className="sidenav" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+            <li><Link to="sass.html">Sass</Link></li>
+            <li><Link to="badges.html">Components</Link></li>
+            <li><Link to="collapsible.html">Javascript</Link></li>
+            <li><Link to="mobile.html">Mobile</Link></li>
           </ul>
         </header>
         
         <main>
-          <Route path="/cart/:id?" component={cartScreen} ></Route>
+          <Route path="/cart/:id?" component={CartScreen} ></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
