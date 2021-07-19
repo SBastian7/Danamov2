@@ -28,7 +28,7 @@ function App() {
               <Link to="#!" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up red-text text-darken-4"><i className="material-icons">menu</i></Link>
               <ul id="nav-mobile" className="right">
                 <li><Link to="#!"><i className="far fa-user fa-lg red-text text-darken-4"></i><span className=" red-text text-darken-4">Ingresar</span></Link></li>
-                <li><Link to="#!" className="cart-button valign-wrapper"><i className="fas fa-shopping-cart fa-lg"></i>{cartItems.length>=0 && (<span className="cart-badge">{" "+cartItems.length}</span>)}</Link></li>
+                <li><Link to="/cart" className="cart-button valign-wrapper"><i className="fas fa-shopping-cart fa-lg"></i>{cartItems.length>=0 && (<span className="cart-badge">{" "+cartItems.length}</span>)}</Link></li>
               </ul>
             </div>
 

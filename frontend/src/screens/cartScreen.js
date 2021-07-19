@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import MessageBox from '../components/MessageBox';
 import { Link } from 'react-router-dom'
 import M from "materialize-css";
@@ -9,15 +9,17 @@ import M from "materialize-css";
 export default function CartScreen(props) {
 	const productId = props.match.params.id;
 	const qty = props.location.search ? Number(props.location.search.split('&')[0].split('=')[1]) : 1;
-	const color = props.location.search ? props.location.search.split('&')[2].split('=')[1] : 'non';
-	const size = props.location.search ? Number(props.location.search.split('&')[1].split('=')[1]) : 0;
+	const color = props.location.search ? props.location.search.split('&')[1].split('=')[1] : 'non';
+	const size = props.location.search ? Number(props.location.search.split('&')[2].split('=')[1]) : 0;
 	const cart = useSelector(state => state.cart)
 	const { cartItems } = cart
 	const dispatch = useDispatch();
 	useEffect(() => {
 		if (productId) {
-			dispatch(addToCart(productId, Number(qty), color, size))
+			console.log(color,size)
+			dispatch(addToCart(productId, Number(qty), color, Number(size)))
 		}
+		instance()
 	}, [color, dispatch, productId, qty, size])
 
 	const dotprice = (price_txt) => {
@@ -42,12 +44,13 @@ export default function CartScreen(props) {
 	const instance = () => {
 		var elems = document.querySelectorAll('.collapsible');
 		var options = {}
+    // eslint-disable-next-line no-unused-vars
     var instances = M.Collapsible.init(elems, options);
-		console.log(instances)
+		
 	}
 
 	const removeFromCartHandler = (id) => {
-		console.log("Remove "+id)
+		dispatch(removeFromCart(id))
 	}
 
 	const checkoutHandler = () => {
@@ -69,7 +72,7 @@ export default function CartScreen(props) {
 								<div className="col s12">
 									{
 										cartItems.length === 0 ? <MessageBox>
-											Tu carrito de compras está vacío... Ir a <Link to="/products">comprar</Link>
+											Tu carrito de compras está vacío... Ir a <Link to="/">comprar</Link>
 										</MessageBox> :
 											(
 												<ul className="collapsible popout">
@@ -102,7 +105,7 @@ export default function CartScreen(props) {
 																				value={item.qty}
 																				onChange={(e) =>
 																					dispatch(
-																						addToCart(item.product,Number(e.target.value))
+																						addToCart(item.product,Number(e.target.value),item.color,item.size)
 																					)} >
 																				{
 																					[...Array(item.stock).keys()].map(x => (
@@ -169,7 +172,7 @@ export default function CartScreen(props) {
 									</div>
 								</div>
 								<div className="row">
-									<div className="btn" onClick={checkoutHandler} disable={cartItems.length === 0}>
+									<div className="btn" onClick={checkoutHandler} disabled={cartItems.length === 0}>
 										Continuar Compra
 									</div>
 								</div>

@@ -11,12 +11,11 @@ export default function HomeScreen(props) {
 	const [qty, setQty] = useState(1);
 	const productDetails = useSelector((state) => state.productDetails);
 	const { loading, error, product } = productDetails;
-	const [color, setColor] = useState('')
-	const [size, setSize] = useState(0)
+	const [color, setColor] = useState()
+	const [size, setSize] = useState()
 
 	useEffect(() => {
 		dispatch(detailsProduct(productId))
-
 	}, [dispatch, productId])
 
 	const dotprice = (price_txt) => {
@@ -39,7 +38,19 @@ export default function HomeScreen(props) {
 	}
 
 	const addToCartHandler = () => {
-		props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${size}`)
+		if(color === undefined){
+			setColor(productDetails.product.colores[0])
+		}
+		if(!size){
+			if(!color){
+				props.history.push(`/cart/${productId}?qty=${qty}&color=${productDetails.product.colores[0]}&size=${productDetails.product.tallas[0]}`)
+			}else{
+				props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${productDetails.product.tallas[0]}`)
+			}
+		}else{
+			props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${size}`)
+		}
+		
 	}
 	return (
 		<div className="container">

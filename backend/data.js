@@ -72,8 +72,8 @@ const data = {
             stock:18,
             numReviews:3,
             description:'Ultimos nuevos y mazimos dm ioasjpo wskjs wqop',
-            colores:[],
-            tallas:[]
+            colores:['black'],
+            tallas:[0]
         },
         {
             _id:'4',
