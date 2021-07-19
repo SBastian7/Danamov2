@@ -3,8 +3,8 @@ import bcrypt from 'bcryptjs'
 const data = {
     products:[
         {
-            _id:"0",
-            name:'Ultra Highness',
+            
+            name:'Ultra23 Highness',
             category:'Camisetas',
             image:'item.jpg',
             price:143900,
@@ -18,15 +18,15 @@ const data = {
                 'green',
                 'blue'
             ],
-            tallas:[
+            size:[
                 15,
                 16,
                 17
             ]
         },
         {
-            _id:'1',
-            name:'Camiseta Hoiwjd',
+            
+            name:'Camiseta12 Hoiwjd',
             category:'Camisetas',
             image:'p0.jpg',
             price:185000,
@@ -40,13 +40,13 @@ const data = {
                 'green',
                 'yellow'
             ],
-            tallas:[
+            size:[
                 15,
                 17
             ]
         },
         {
-            _id:'2',
+            
             name:'Caremañola MFXd',
             category:'Camisetas',
             image:'item.jpg',
@@ -59,12 +59,12 @@ const data = {
             colores:[
                 'red'
             ],
-            tallas:[
+            size:[
                 15
             ]
         },
         {
-            _id:'3',
+            
             name:'Buso Housel Hans',
             category:'Zapatos',
             image:'item.jpg',
@@ -75,10 +75,10 @@ const data = {
             numReviews:3,
             description:'Ultimos nuevos y mazimos dm ioasjpo wskjs wqop',
             colores:['black'],
-            tallas:[0]
+            size:[0]
         },
         {
-            _id:'4',
+            
             name:'Camiseta Hoiwjd',
             category:'Camisetas',
             image:'item.jpg',
@@ -91,7 +91,7 @@ const data = {
             colores:[
                 'red'
             ],
-            tallas:[
+            size:[
                 15
             ]
         }

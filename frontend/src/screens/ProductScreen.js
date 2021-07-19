@@ -39,13 +39,13 @@ export default function HomeScreen(props) {
 
 	const addToCartHandler = () => {
 		if(color === undefined){
-			setColor(productDetails.product.colores[0])
+			setColor("productDetails.product.colores[0]")
 		}
 		if(!size){
 			if(!color){
-				props.history.push(`/cart/${productId}?qty=${qty}&color=${productDetails.product.colores[0]}&size=${productDetails.product.tallas[0]}`)
+				props.history.push(`/cart/${productId}?qty=${qty}&color=${"productDetails.product.colores[0]"}&size=${productDetails.product.tallas[0]}`)
 			}else{
-				props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${productDetails.product.tallas[0]}`)
+				props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${"productDetails.product.tallas[0]"}`)
 			}
 		}else{
 			props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${size}`)
@@ -61,7 +61,7 @@ export default function HomeScreen(props) {
 						: (
 							<div className="container">
 								<div className="row">
-									<div className="col s12">
+									<div className="col s12 l12">
 										<div className="card">
 											<div className="card-content">
 												<div className="row">
@@ -90,8 +90,7 @@ export default function HomeScreen(props) {
 															</div>
 														</div>
 														<div className="row">
-															<div className="col s5 offset-s1 center">
-																{product.rating}
+															<div className="col s6 center rating">
 																<Rating rating={product.rating}></Rating>
 																<small className="grey-text">{product.numReviews + " calificaciones"}</small>
 															</div>
@@ -104,24 +103,24 @@ export default function HomeScreen(props) {
 														<div className="row valign-wrapper">
 															<div className="col bold">Colores</div>
 															{
-																product.colores.map((c, index) => (
+																/*product.colores.map((c, index) => (
 																	<div className={"color_box hoverable " + c} key={c} onClick={() => {setColor(c)}}>
-																		{/* <i className="fas fa-check check"></i> */}
+																		{/* <i className="fas fa-check check"></i> }
 																	</div>
-																))
+																))*/
 															}
 														</div>
 														<div className="row valign-wrapper">
 															<div className="col bold">
 																Tallas
 															</div>
-															{
+															{/*
 																product.tallas.map((s, index) => (
 																	<div className={"size_box hoverable center"} key={`size${s}`} id={`size${s}`} onClick={() => setSize(s)}>
 																		{s}
 																	</div>
 																))
-															}
+																*/}
 														</div>
 														<div className="row">
 															<div className="col s12">
