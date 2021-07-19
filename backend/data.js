@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs'
+
 const data = {
     products:[
         {
@@ -92,6 +94,19 @@ const data = {
             tallas:[
                 15
             ]
+        }
+    ],
+    users:[
+        {
+            name:'sebastian',
+            email:'mail@mail',
+            password: bcrypt.hashSync('admin',8),
+            isAdmin: true,
+        },{
+            name:'Jaime',
+            email:'user@user',
+            password: bcrypt.hashSync('user',8),
+            isAdmin: false,
         }
     ]
 }
