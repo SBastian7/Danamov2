@@ -101,3 +101,23 @@ a{
   background: rgb(148, 3, 3);
   height:3em;
 }
+.rowCart{
+  margin-bottom: 5px;
+  padding-top: 5px;
+  border: solid 1px rgb(201, 200, 200);
+}
+.cursor{
+  cursor: pointer;
+}
+.link{
+  color: rgb(92, 8, 8);
+}
+.ml-10{
+  margin-right: 10px;
+}
+.z-9{
+  z-index: 999;
+}
+.z-0{
+  z-index: 0;
+}
