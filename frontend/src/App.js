@@ -7,6 +7,7 @@ import CartScreen from './screens/CartScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
 import RegisterScreen from './screens/RegisterScreen.js';
+import ShippingAddressScreen from './screens/ShippingAddressScreen.js';
 import SigninScreen from './screens/SigninScreen.js';
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
   const dispatch = useDispatch()
   const signoutHandler = () => {
     dispatch(signout())
+    window.location.reload()
   }
-  console.log(userInfo)
 
   return (
     <BrowserRouter>
@@ -98,6 +99,7 @@ function App() {
           <Route path="/product/:id" component={ProductScreen}></Route>
           <Route path="/signin" component={SigninScreen}></Route>
           <Route path="/register" component={RegisterScreen}></Route>
+          <Route path="/shipping" component={ShippingAddressScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
 

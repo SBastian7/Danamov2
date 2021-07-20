@@ -118,3 +118,11 @@ a{
 .rating{
   margin-top: 7px;
 }
+.checkout-steps > div{
+  margin: 10px 0;
+  padding-bottom: 10px;
+  border-bottom: solid 2px darkred;
+}
+.checkout-steps > div.active{
+  border-bottom: solid 2px darkorange;
+}
