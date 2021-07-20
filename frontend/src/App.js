@@ -6,6 +6,7 @@ import { signout } from './actions/userActions.js';
 import CartScreen from './screens/CartScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
+import RegisterScreen from './screens/RegisterScreen.js';
 import SigninScreen from './screens/SigninScreen.js';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   const signoutHandler = () => {
     dispatch(signout())
   }
+  console.log(userInfo)
 
   return (
     <BrowserRouter>
@@ -37,16 +39,22 @@ function App() {
               </Link>
 
               <Link to="#!" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up red-text text-darken-4"><i className="material-icons">menu</i></Link>
-              <ul id='dropdown2' className='dropdown-content'>
-                <li><a href="#!">one</a></li>
-                <li><a href="#!">two</a></li>
-                <li class="divider"></li>
+              {
+                userInfo? (
+                  <ul id='dropdown2' className='dropdown-content'>
+                <li><Link to="/signin"><i className="material-icons">cloud</i>Tu cuenta</Link></li>
                 <li><Link to="#signout" onClick={signoutHandler}>Cerrar sesión</Link></li>
-                <li><a href="#!"><i className="material-icons">view_module</i>four</a></li>
-                <li><a href="#!"><i className="material-icons">cloud</i>five</a></li>
               </ul>
+                ):(
+                  <ul id='dropdown2' className='dropdown-content'>
+                <li><Link to="/signin"><i className="material-icons">cloud</i>Iniciar sesión</Link></li>
+                <li><Link to="/register"><i className="material-icons">cloud</i>Registrarse</Link></li>
+              </ul>
+                )
+              }
               <ul id="nav-mobile" className="right">
                 <li>
+                  
                   {
                     userInfo ? (
                       <Link to="#!" className="dropdown-trigger" data-target='dropdown2'>
@@ -57,10 +65,10 @@ function App() {
                         </span>
                       </Link>
                     ) : (
-                      <Link to="/signin">
+                      <Link to="#!" className="dropdown-trigger" data-target='dropdown2'>
                         <i className="far fa-user fa-lg red-text text-darken-4"></i>
                         <span className=" red-text text-darken-4">
-                          Iniciar sesión
+                          {" Ingresar"}
                         </span>
                       </Link>
                     )
@@ -89,6 +97,7 @@ function App() {
           <Route path="/cart/:id?" component={CartScreen} ></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>
           <Route path="/signin" component={SigninScreen}></Route>
+          <Route path="/register" component={RegisterScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
 
