@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import {Link} from 'react-router-dom'
-import {BrowserRouter, Route} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { signout } from './actions/userActions.js';
 import CartScreen from './screens/CartScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
@@ -10,6 +11,15 @@ import SigninScreen from './screens/SigninScreen.js';
 function App() {
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart
+
+  const userSignin = useSelector(state => state.userSignin)
+  const { userInfo } = userSignin
+
+  const dispatch = useDispatch()
+  const signoutHandler = () => {
+    dispatch(signout())
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -27,9 +37,37 @@ function App() {
               </Link>
 
               <Link to="#!" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up red-text text-darken-4"><i className="material-icons">menu</i></Link>
+              <ul id='dropdown2' className='dropdown-content'>
+                <li><a href="#!">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+                <li><Link to="#signout" onClick={signoutHandler}>Cerrar sesión</Link></li>
+                <li><a href="#!"><i className="material-icons">view_module</i>four</a></li>
+                <li><a href="#!"><i className="material-icons">cloud</i>five</a></li>
+              </ul>
               <ul id="nav-mobile" className="right">
-                <li><Link to="#!"><i className="far fa-user fa-lg red-text text-darken-4"></i><span className=" red-text text-darken-4">Ingresar</span></Link></li>
-                <li><Link to="/cart" className="cart-button valign-wrapper"><i className="fas fa-shopping-cart fa-lg"></i>{cartItems.length>=0 && (<span className="cart-badge">{" "+cartItems.length}</span>)}</Link></li>
+                <li>
+                  {
+                    userInfo ? (
+                      <Link to="#!" className="dropdown-trigger" data-target='dropdown2'>
+                        <i className="far fa-user fa-lg red-text text-darken-4"></i>
+                        <span className=" red-text text-darken-4">
+                          {
+                            ' ' + userInfo.name}
+                        </span>
+                      </Link>
+                    ) : (
+                      <Link to="/signin">
+                        <i className="far fa-user fa-lg red-text text-darken-4"></i>
+                        <span className=" red-text text-darken-4">
+                          Iniciar sesión
+                        </span>
+                      </Link>
+                    )
+
+                  }
+                </li>
+                <li><Link to="/cart" className="cart-button valign-wrapper"><i className="fas fa-shopping-cart fa-lg"></i>{cartItems.length >= 0 && (<span className="cart-badge">{" " + cartItems.length}</span>)}</Link></li>
               </ul>
             </div>
 
@@ -46,7 +84,7 @@ function App() {
             <li><Link to="mobile.html">Mobile</Link></li>
           </ul>
         </header>
-        
+
         <main>
           <Route path="/cart/:id?" component={CartScreen} ></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>

@@ -47,11 +47,12 @@
     <script>
       $(document).ready(function () {
           $('.sidenav').sidenav();
-          $(".dropdown-trigger").dropdown();
+          $(".dropdown-trigger").dropdown({hover:true,coverTrigger:false});
           $('.materialboxed').materialbox();
           $('select').formSelect();
           $('.collapsible').collapsible();
-
+          
+          
       });
   </script>
   <script src="../js.js"></script>

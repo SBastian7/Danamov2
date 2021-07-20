@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { signin } from '../actions/userActions';
 
-export default function SigninScreen() {
+export default function SigninScreen(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
+    const redirect = props.location.search? props.location.search.split('=')[1]:'/'
+
+    const userSignin = useSelector(state => state.userSignin)
+    const { userInfo } = userSignin
+
+    const dispatch = useDispatch()
+
     const submitHandler = (e) => {
         e.preventDefault()
-        // todo signin action
+        dispatch(signin(email, password))
     }
+
+    useEffect(() => {
+        if(userInfo){
+            props.history.push(redirect)
+        }
+    },[props.history, redirect, userInfo])
 
     return (
         <div className="container">
@@ -21,14 +36,14 @@ export default function SigninScreen() {
                                 <div className="bold">Iniciar Sesión</div>
                             </div>
                             <form onSubmit={submitHandler}>
-                                <div class="row">
+                                <div className="row">
                                     <br />
-                                    <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate" required onChange={(e) => setEmail(e.target.value)} />
+                                    <div className="input-field col s12">
+                                        <input id="email" type="email" className="validate" required onChange={(e) => setEmail(e.target.value)} />
                                         <label htmlFor="email">Correo Electrónico</label>
                                     </div>
-                                    <div class="input-field col s12">
-                                        <input id="password" type="password" class="validate" required onChange={(e) => setPassword(e.target.value)} />
+                                    <div className="input-field col s12">
+                                        <input id="password" type="password" className="validate" required onChange={(e) => setPassword(e.target.value)} />
                                         <label htmlFor="password">Contraseña</label>
                                     </div>
                                     <div className="row">
