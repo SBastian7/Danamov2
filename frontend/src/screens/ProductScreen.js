@@ -43,7 +43,7 @@ export default function HomeScreen(props) {
 		}
 		if(!size){
 			if(!color){
-				props.history.push(`/cart/${productId}?qty=${qty}&color=${"productDetails.product.colores[0]"}&size=${productDetails.product.tallas[0]}`)
+				props.history.push(`/cart/${productId}?qty=${qty}&color=${"productDetails.product.colores[0]"}&size=${"productDetails.product.tallas[0]"}`)
 			}else{
 				props.history.push(`/cart/${productId}?qty=${qty}&color=${color}&size=${"productDetails.product.tallas[0]"}`)
 			}

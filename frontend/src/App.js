@@ -5,6 +5,7 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import CartScreen from './screens/CartScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
+import SigninScreen from './screens/SigninScreen.js';
 
 function App() {
   const cart = useSelector(state => state.cart);
@@ -49,6 +50,7 @@ function App() {
         <main>
           <Route path="/cart/:id?" component={CartScreen} ></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>
+          <Route path="/signin" component={SigninScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
 

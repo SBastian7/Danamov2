@@ -1,8 +1,8 @@
-POST http://localhost:4000/users/signin
+POST http://localhost:4000/api/users/signin
 content-type: application/json
 
 {
-    "email": "admin@mail",
+    "email": "mail@mail",
     "password": "admin"
 }
 
