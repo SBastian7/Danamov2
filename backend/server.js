@@ -25,7 +25,7 @@ app.use('/api/products', productRouter)
 app.use((err,req,res,next) => {
     res.status(500).send({ message: err.message })
 })
-const port = process.env.PORT || 4477
+const port = process.env.PORT || 4000
 app.listen(port, () => {
     console.log('Serving at '+port)
 })

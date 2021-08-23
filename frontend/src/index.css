@@ -25,6 +25,12 @@ a{
 .logo{
   height: 16vh;
 }
+.nav-extended{
+  height: 15vh !important;
+}
+.nav-content{
+  margin-top: 27px;
+}
 .color_box{
   margin: 5px;
   display: inline-block;
