@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
         product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }
     }],
     shippingAddress: {
-        fullName: { type: String, required: true },
+        fullname: { type: String, required: true },
         address: { type: String, required: true },
         obs: { type: String, required: false },
         department: { type: String, required: true },

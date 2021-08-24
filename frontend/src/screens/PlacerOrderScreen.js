@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import { createOrder } from '../actions/orderActions'
 import CheckoutSteps from '../components/CheckoutSteps'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import LoadingBox from '../components/LoadingBox'
+import MessageBox from '../components/MessageBox'
 
 export default function PlacerOrderScreen(props) {
 
@@ -14,11 +18,9 @@ export default function PlacerOrderScreen(props) {
 	if (!cart.shippingAddress) {
 		props.history.push('/shipping')
 	}
-
-	const removeFromCartHandler = (id) => {
-		dispatch(removeFromCart(id))
-	}
-
+	const orderCreate = useSelector(state => state.orderCreate)
+	const {loading, success, error, order } = orderCreate
+	
 	const dotprice = (price_txt) => {
 		var txt = ""
 		var pos = 0
@@ -42,11 +44,27 @@ export default function PlacerOrderScreen(props) {
 	const priceBefore = cart.itemsPrice
 	const priceIVA = Number((cart.itemsPrice/1.19).toFixed(0))
 	const shippingPrice = cart.itemsPrice >= 100000 ? 0 : 10000;
+
+	cart.shippingPrice = shippingPrice;
+	cart.taxPrice = priceIVA;
+	cart.totalPrice = priceBefore + shippingPrice
+
+	cart.user = user.userInfo
 	
 	const placeOrderHandler = () => {
-		console.log("placing order");
-		// TODO DISPARTCH
+		// console.log({...cart, orderItems: cart.cartItems });
+		dispatch(createOrder({...cart, orderItems: cart.cartItems }));
 	}
+
+	useEffect(() => {
+		if(success){
+			props.history.push(`/order/${order._id}`);
+			dispatch({
+				type: ORDER_CREATE_RESET
+			})
+		}
+	}, [dispatch, order, props.history, success])
+
 	return (
 		<div className='container'>
 			<CheckoutSteps step1 step2 step3></CheckoutSteps>
@@ -82,10 +100,10 @@ export default function PlacerOrderScreen(props) {
 														{index + 1}
 													</div>
 													<img src={"/img/" + item.image} alt={item.name + " Danamo Store"} className="responsive-img col s2" />
-													<div className="col s6">
+													<div className="col s5">
 														<Link to={`/product/${item.product}`}>{" " + item.name}</Link>
 													</div>
-													<div className="col s5">
+													<div className="col s6">
 														<div className="right">{item.qty} x ${dotprice(String(item.price))} = ${dotprice(String(item.qty * item.price))}</div>
 													</div>
 												</div>
@@ -144,6 +162,8 @@ export default function PlacerOrderScreen(props) {
 								</p>
 							</div>
 							<div className="row center"><button className="btn" onClick={placeOrderHandler}>Ir a pagar</button></div>
+							{loading && <LoadingBox></LoadingBox>}
+							{error && <MessageBox variant="danger">{error}</MessageBox>}
 						</div>
 					</div>
 				</div>

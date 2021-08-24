@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { createAddress } from '../actions/addressActions'
 import { saveShippingAddress } from '../actions/cartActions'
 import CheckoutSteps from '../components/CheckoutSteps'
 
@@ -15,16 +16,22 @@ export default function ShippingAddressScreen(props) {
         props.history.push('/signin')
     }
     const [address, setAddress] = useState(shippingAddress.address)
-    const [ind, setInd] = useState(shippingAddress.ind)
-    const [tel, setTel] = useState(shippingAddress.tel)
-    const [dpto, setDpto] = useState(shippingAddress.dpto)
+    const [obs, setObs] = useState(shippingAddress.obs)
+    const [phone, setPhone] = useState(shippingAddress.phone)
+    const [dpto, setDpto] = useState(shippingAddress.department)
     const [city, setCity] = useState(shippingAddress.city)
+    const [saveAddress, setSaveAddress] = useState(false)
 
     const dispatch = useDispatch()
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingAddress({address,ind,tel,dpto,city}))
+        dispatch(saveShippingAddress({fullname:userInfo.name,address,obs,phone,department:dpto,city,user:userInfo._id}))
+        console.log(userInfo);
+        if(saveAddress){
+            console.log("guardando");
+            dispatch(createAddress(cart.shippingAddress))
+        }
         props.history.push('/placeorder')
     }
 
@@ -46,12 +53,12 @@ export default function ShippingAddressScreen(props) {
                                         <label htmlFor="address" className={address&&'active'}>Dirección</label>
                                     </div>
                                     <div className="input-field col s12 center">
-                                        <input id="ind" type="text" className="validate" required value={ind} onChange={(e) => setInd(e.target.value)} />
-                                        <label htmlFor="ind" className={address&&'active'}>Observaciones</label>
+                                        <input id="obs" type="text" className="validate" required value={obs} onChange={(e) => setObs(e.target.value)} />
+                                        <label htmlFor="obs" className={address&&'active'}>Observaciones</label>
                                     </div>
                                     <div className="input-field col s12 center">
-                                        <input id="tel" type="tel" className="validate" required value={tel} onChange={(e) => setTel(e.target.value)} />
-                                        <label htmlFor="tel" className={address&&'active'}>Celular</label>
+                                        <input id="phone" type="tel" className="validate" required value={phone} onChange={(e) => setPhone(e.target.value)} />
+                                        <label htmlFor="phone" className={address&&'active'}>Celular</label>
                                     </div>
                                     <div className="input-field col s12 center">
                                         <input id="depto" type="text" className="validate" required value={dpto} onChange={(e) => setDpto(e.target.value)} />
@@ -64,7 +71,7 @@ export default function ShippingAddressScreen(props) {
                                     <div className="input-field col s12">
                                         <p>
                                         <label>
-                                            <input type="checkbox" />
+                                            <input type="checkbox" id="saveAddress" checked={saveAddress} onChange={(e) => setSaveAddress(!saveAddress)} />
                                             <span>Guardar dirección</span>
                                         </label>
                                         </p>

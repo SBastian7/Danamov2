@@ -9,17 +9,19 @@ addressRouter.post(
     '/',
     isAuth,
     expressAsyncHandler(async (req, res) => {
-        if (req.body.shippingAddress) {
+        if (req.body.address) {
             const address = new Address({
-                user: req.user._id,
+                user: req.body.user,
                 address: req.body.address,
                 obs: req.body.obs,
                 phone: req.body.phone,
                 department: req.body.department,
-                city: req.body.phone
+                city: req.body.city
             });
             const createdAddress = await address.save();
             res.status(201).send({ message: 'Dirección OK', address: createdAddress })
+        }else{
+            res.status(400).send({ message: 'Dirección vacía ' })
         }
     })
 )
