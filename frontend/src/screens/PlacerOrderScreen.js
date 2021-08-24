@@ -41,6 +41,7 @@ export default function PlacerOrderScreen(props) {
 	cart.itemsPrice = cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0);	
 	const priceBefore = cart.itemsPrice
 	const priceIVA = Number((cart.itemsPrice/1.19).toFixed(0))
+	const shippingPrice = cart.itemsPrice >= 100000 ? 0 : 10000;
 	
 	const placeOrderHandler = () => {
 		console.log("placing order");
@@ -138,7 +139,7 @@ export default function PlacerOrderScreen(props) {
 										Total
 									</div>
 									<div className="right">
-										$ {dotprice(String(priceBefore))}
+										$ {dotprice(String(priceBefore+shippingPrice))}
 									</div>
 								</p>
 							</div>
